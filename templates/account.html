@@ -1,0 +1,28 @@
+{% include 'header.html' %}
+{% load staticfiles %}
+
+<div class="container-other">
+    <h2 id="form-show">Click Here To Update Your Info</h2>
+    <div class="form update">
+        <h3 style="float: right;cursor: pointer" id="form-hide">Click her To Cancel</h3>
+<form name = "form" action="{% url "update"  %}" method="POST">{% csrf_token %}
+    <input type="text" placeholder="Name" name="name" value="{{ name }}"/><br>
+    <input type="text" placeholder="Address" name="address" value="{{ add }}"/><br>
+    <input type="text" placeholder="City" name="city" value="{{ city }}"/><br>
+    <input type="text" placeholder="pincode" name="pincode" value="{{ pin }}"/><br>
+    <input type="text" placeholder="E-Mail" name="email" value="{{ email }}"/><br>
+    <input type="password" placeholder="Paswword" name="password" value="{{ password }}"/><br>
+    <input type="text" placeholder="Phone Number" name="phno" value="{{ phno }}"/>
+    <input type="submit" value="Submit" class="but"/>
+</form>
+</div>
+    {% if order %}
+        <h2>Your Order</h2>
+{% load render_table from django_tables2 %}
+{% render_table order %}
+        {% else %}
+        <h2>No order yet</h2>
+    {% endif %}
+</div>
+</body>
+</html>

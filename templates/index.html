@@ -1,0 +1,125 @@
+{% include 'header.html' %}
+{% load staticfiles %}
+
+
+<div class="imgmain">
+{% for i in product1 %}
+    <a href="{% url 'detail' i.id %}"><img class="mySlides" src="{% static i.image %}" alt="Samsung"/></a>
+
+{% endfor %}
+
+<a class="btn-floating" style="position:absolute;top:45%;left:0" onclick="plusDivs(-1)">❮</a>
+<a class="btn-floating" style="position:absolute;top:45%;right:0" onclick="plusDivs(1)">❯</a>
+</div>
+
+<div class="container">
+    <div class="list-container">
+    <h4 class="list-header">Special Discounts</h4>
+    <div class="btn-floating-list" id="left" style="left:0">❮</div>
+	<div class="btn-floating-list" id="right" style="right:0" >❯</div>
+    <div class="scroll-main">
+        <ul class="scroll-list">
+            {% for i in discount %}
+        	<li><a href="{% url 'detail' i.id %}"> <img src="{% static i.image %}"/></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    </div>
+
+    <div class="popular-products-container">
+        <h2 class="list-header">Popular Products</h2>
+    <table class="popular-products">
+        <tr>
+            <td >
+                <div style='background-image: url("{% static popular.0.image %}"); float: left;' class="popular-products-div">
+                    <a href="{% url 'detail' popular.0.id %}"><h2 class="popular-products-div-header">{{popular.0.name}}</h2></a>
+                </div>
+            </td>
+            <td>
+                <div style='background-image: url("{% static popular.1.image %}"); float: right;' class="popular-products-div">
+                    <a href="{% url 'detail' popular.1.id %}"><h2 class="popular-products-div-header">{{popular.1.name}}</h2></a>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div style='background-image: url("{% static popular.2.image %}"); float: left;' class="popular-products-div">
+                    <a href="{% url 'detail' popular.2.id %}"><h2 class="popular-products-div-header">{{popular.2.name}}</h2></a>
+                </div>
+            </td>
+            <td>
+                <div style='background-image: url("{% static popular.3.image %}"); float: right;' class="popular-products-div">
+                    <a href="{% url 'detail' popular.3.id %}"><h2 class="popular-products-div-header">{{popular.3.name}}</h2></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+</div>
+
+{% if name == "" %}
+ <div class="sign-in-container">
+            <form action="{% url "login" %}?next={{request.path}}" method="POST">{% csrf_token %}
+                <input type="text" placeholder="Email" name="email"/><br>
+                <input type="password" placeholder="Password" name="password"/><br>
+                <input class="but" type="submit" value="Log In"><input class="but" type="reset" value="Cancel">
+            </form>
+        </div>
+{% endif %}
+
+
+
+<footer>
+	<h2 id="gototop">Back To Top</h2>
+	<div class="footer1">
+      <table class="footer-table-container">
+    <tr><td>
+    	<ul class="footer-ul-container">
+    	    		<h3 class="footer-heading">Men</h3>
+        	    	<li>Clothing</li>
+            		<li>Accessories</li>
+    	    		<h3 class="footer-heading">Woman</h3>
+        	    	<li>Clothing</li>
+            		<li>Accessories</li>
+    	    		<h3 class="footer-heading">Kid</h3>
+        	    	<li>Clothing</li>
+            		<li>Accessories</li>
+        </ul></td><td>
+
+    	<ul class="footer-ul-container">
+    	    		<h3 class="footer-heading">Fitness</h3>
+        	    	<li>Training</li>
+            		<li>Running</li>
+                    <h3 class="footer-heading">Connect</h3>
+        	    	<li>Facebook</li>
+            		<li>Twitter</li>
+        </ul></td>
+
+        <td>
+    	<ul class="footer-ul-container">
+    	    		<h3 class="footer-heading">New Arrival</h3>
+        	    	<li>For Men</li>
+            		<li>For Women</li>
+                    <li>For Kids</li>
+        </ul></td>
+
+        <td>
+    	<ul class="footer-ul-container">
+    	    		<h3 class="footer-heading">Customer Services</h3>
+        	    	<li>Contact Us</li>
+            		<li>My Account</li>
+                    <li>Privacy Policy</li>
+					<li>Terms And Condition</li>
+        </ul></td>
+
+        </tr></table>
+    </div>
+
+</footer>
+
+</body>
+<script type="text/javascript" src="{% static 'js/main1.js' %}"></script>
+</html>

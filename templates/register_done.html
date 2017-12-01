@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registeration Done</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="{% static 'js/otherjq.js' %}"></script>
+</head>
+<body>
+{% include 'header.html' %}
+<meta http-equiv="REFRESH" content="0;url={% url 'index' %}">
+<h1>{{ phno.as_ul}}</h1>
+</body>
+</html>

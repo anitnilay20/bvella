@@ -1,0 +1,24 @@
+{% include 'header.html' %}
+{% load staticfiles %}
+<div class="container-other">
+<br>
+    <ul class="done3">
+        <li>Sort By:</li>
+        <li><a href="?order=name&search={{ search }}">Name</a></li>
+        <li><a href="?order=-rate&search={{ search }}">High Price</a></li>
+        <li><a href="?order=rate&search={{ search }}">Low Price</a></li>
+        <li><a href="?order=-date&search={{ search }}">Newest</a></li>
+    </ul>
+<hr>
+<h2>Result for {{ search }}</h2>
+    {% for i in list %}
+    <div class="products-list-div">
+        <a href="{% url 'detail' i.id %}">
+            <img src="{% static i.image %}">
+            <h2 class="popular-products-div-header" style="font-size: 15px">{{ i.name }}
+            <br>Rs {{ i.rate }}</h2></a>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bvella</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'abc.css' %}" />
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="{% static 'js/otherjq.js' %}"></script>
+</head>
+<body onLoad="showDivs(slideIndex);start();">
+<header>
+{% load staticfiles %}
+<div class="h_one">
+<ul class="done">
+	 <a href="{% url "index" %}"> <li><h1>Bvella</h1></li></a>
+    {% if name == "" %}
+        <li id="sign-in" style="cursor: pointer"><a href="#" >Sign In</a></li>
+        <a href="{% url "register" %}"><li>Register</li></a>
+    {% else %}
+        <li id="user-name"><a href="{% url "account" %}">{{ name }}</a></li>
+        <li><a href="{% url "logout" %}">Log Out</a> </li>
+        <li><a href="{% url "view_cart" %}">Cart <span class="cart-number">{{ cart }}</span></a> </li>
+    {% endif %}
+
+    <li><a href="{% static 'app.apk' %}">Get Our App</a></li>
+    <li style="float: right;"><form action="{% url "search" %}" method="GET">
+        <input type="text" placeholder="Search Products" name="search" style="height: 40px; width:300px;border: none;background: #CCCCCC;border-radius: 5px"/>
+        <input style="border: none;height:40px;width:40px;background: #CCCCCC;border-radius: 5px" type="submit" value="Go">
+    </form></li>
+</ul>
+</div>
+
+
+<div class="h_two" id="h_two">
+
+<ul class="done2">
+	<li class="dropdown">
+        <a href="#">Men</a>
+        <ul class="sub-menu">
+            <li><a href="{% url 'pro_list' %}?main=men&under=clothing&order=name">Clothing</a> </li>
+            <li><a href="{% url 'pro_list' %}?main=men&under=accessories&order=name">Accessories</a> </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#">Women</a>
+        <ul class="sub-menu">
+            <li><a href="{% url 'pro_list' %}?main=women&under=clothing&order=name">Clothing</a> </li>
+            <li><a href="{% url 'pro_list' %}?main=women&under=accessories&order=name">Accessories</a> </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#">Kids</a>
+        <ul class="sub-menu">
+            <li><a href="{% url 'pro_list' %}?main=kids&under=clothing&order=name">Clothing</a> </li>
+            <li><a href="{% url 'pro_list' %}?main=kids&under=accessories&order=name">Accessories</a> </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#">Shop@</a>
+        <ul class="sub-menu">
+            <li><a href="">Flipkart</a> </li>
+            <li><a href="">Myntra</a> </li>
+            <li><a href="">Amazon</a> </li>
+            <li><a href="">Snapdeal</a> </li>
+        </ul>
+    </li>
+</ul>
+</div>
+</header>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+{% load staticfiles %}
+
+
+<div class="container-other">
+    <h2>Enter Your Information</h2>
+<div class="form">
+<form name = "form" action="{% url "register_done"  %}" method="POST">{% csrf_token %}
+    <input type="text" placeholder="Name" name="name"/><br>
+    <input type="text" placeholder="Address" name="address"/><br>
+    <input type="text" placeholder="City" name="city"/><br>
+    <input type="text" placeholder="pincode" name="pincode"/><br>
+    <input type="text" placeholder="E-Mail" name="email"/><br>
+    <input type="password" placeholder="Paswword" name="password"/><br>
+    <input type="text" placeholder="Phone Number" name="phno"/>
+    <input type="submit" value="Submit" class="but"/>
+</form>
+</div>
+</div>
+
+
+
+
+
+ <div class="sign-in-container">
+            <form action="{% url "login" %}?next={{request.path}}" method="POST">{% csrf_token %}
+                <input type="text" placeholder="Email" name="email"/><br>
+                <input type="password" placeholder="Password" name="password"/><br>
+                <input class="but" type="submit" value="Log In"><input class="but" type="reset" value="Cancel">
+            </form>
+        </div>
+
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% include 'header.html' %}
+{% load staticfiles %}
+
+<div class="container-other">
+{% if pro_name != "You Shall Not Pass" %}
+    <div class="products-image">
+        <img id="main-img" src="{% static product.image %}">
+        <table id="img-table">
+                <tr><td><img onmouseover="changeimg('{% static product.image %}')" src="{% static product.image %}"></td></tr>
+                <tr><td><img onmouseover="changeimg('{% static product.image1 %}')" src="{% static product.image1 %}"></td></tr>
+                <tr><td><img onmouseover="changeimg('{% static product.image2 %}')" src="{% static product.image2 %}"></td></tr>
+                <tr><td><img onmouseover="changeimg('{% static product.image3 %}')" src="{% static product.image3 %}"></td></tr>
+                <tr><td><img onmouseover="changeimg('{% static product.image4 %}')" src="{% static product.image4 %}"></td></tr>
+        </table>
+    </div>
+
+    <div class="products-details">
+    <h1 class="products-heading">{% if pro_name == "You Shall Not Pass" %}
+    You Requested For a product That is not available.. Sorry
+        {% else %}
+        {{ product.name }}
+    {% endif %}</h1>
+    <hr>
+        {% with product.specs.split as abc %}
+            {% for i in abc %}
+                <p><li>{{ i }}</li></p>
+            {% endfor %}
+        {% endwith %}
+
+    <div class="products-price">
+        <p>Rs.{{ product.rate }}
+        ({{ product.special_discount }}% Off)</p>
+        <h3>Available Size</h3><p>
+        {% for i in product.size.split %}
+            {{ i }}
+        {% endfor %}
+            </p>
+    </div>
+    </div>
+
+
+    {% if name != "" %}
+
+        <form id="add_cart" method="get" action="{% url 'add_cart' %}">
+            <input type="text" value="{{ request.path }}" name="next" hidden/>
+            <input type="text" value="{{ name }}" name="user_name" hidden/>
+            <input type="text" value="{{ product.id }}" name="pro_id" hidden/>
+            <input type="submit" value="Add To Cart">
+        </form>
+
+        {% else %}
+        <br>
+        <a href="#" id="sign-in1" >Sign In First To buy</a>
+        {% endif %}
+{% endif %}
+
+<br>
+
+</div>
+
+<div style="margin-top:200px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2 class="list-header">Related Products</h2>
+        <ul class="scroll-list">
+        	{% for i in related %}
+                <li><a href="{% url 'detail' i.id %}"><img src="{% static i.image %}"/> </a> </li>
+            {% endfor %}
+        </ul>
+        </div>
+
+
+
+
+
+
+
+
+
+{% if name == "" %}
+ <div class="sign-in-container">
+            <form action="{% url "login" %}?next={{request.path}}" method="POST">{% csrf_token %}
+                <input type="text" placeholder="Email" name="email"/><br>
+                <input type="password" placeholder="Password" name="password"/><br>
+                <input class="but" type="submit" value="Log In"><input class="but" type="reset" value="Cancel">
+            </form>
+        </div>
+{% endif %}
+
+
+<footer>
+	<h2 id="gototop">Back To Top</h2>
+	<div class="footer1">
+      <table class="footer-table-container">
+    <tr><td>
+    	<ul class="footer-ul-container">
+    	    		<h3 class="footer-heading">Men</h3>
+        	    	<li>Clothing</li>
+            		<li>Accessories</li>
+    	    		<h3 class="footer-heading">Woman</h3>
+        	    	<li>Clothing</li>
+            		<li>Accessories</li>
+    	    		<h3 class="footer-heading">Kid</h3>
+        	    	<li>Clothing</li>
+            		<li>Accessories</li>
+        </ul></td><td>
+
+    	<ul class="footer-ul-container">
+    	    		<h3 class="footer-heading">Fitness</h3>
+        	    	<li>Training</li>
+            		<li>Running</li>
+        </ul></td>
+
+        <td>
+    	<ul class="footer-ul-container">
+    	    		<h3 class="footer-heading">New Arrival</h3>
+        	    	<li>For Men</li>
+            		<li>For Women</li>
+                    <li>For Kids</li>
+        </ul></td>
+
+        <td>
+    	<ul class="footer-ul-container">
+    	    		<h3 class="footer-heading">Customer Services</h3>
+        	    	<li>Contact Us</li>
+            		<li>My Account</li>
+                    <li>Privacy Policy</li>
+					<li>Terms And Condition</li>
+        </ul></td>
+
+        </tr></table>
+    </div>
+
+</footer>
+</body>
+</html>

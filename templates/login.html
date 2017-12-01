@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="{% static 'js/otherjq.js' %}"></script>
+</head>
+<body>
+{% include 'header.html' %}
+{{ date }}{{ user }}
+<br>
+<meta http-equiv="REFRESH" content="0;url={{ next }}">
+<p>Redirecting</p>
+{{ next }}
+<a href="{% url "logout" %}">Log Out</a>
+</body>
+</html>
